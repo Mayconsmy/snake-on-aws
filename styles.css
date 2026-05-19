@@ -1,0 +1,299 @@
+/* ============================================================
+   AWS Snake Game — CSS
+   ============================================================ */
+
+/* ---------- CSS Variables ---------- */
+:root {
+  --aws-navy-deep: #2a2f4a;
+  --aws-navy: #3d4557;
+  --aws-orange: #ff9900;
+  --aws-orange-glow: #ffb84d;
+  --aws-cyan: #00d4ff;
+
+  --background: var(--aws-navy-deep);
+  --foreground: #f7f7f7;
+  --card: #38404f;
+  --card-foreground: #f7f7f7;
+  --primary: var(--aws-orange);
+  --primary-foreground: #2a2f4a;
+  --muted-foreground: #b8b8b8;
+  --border: rgba(100, 120, 150, 0.4);
+
+  --shadow-glow: 0 0 24px rgba(255, 184, 77, 0.6);
+  --shadow-cyan: 0 0 18px rgba(0, 212, 255, 0.55);
+
+  --radius: 10px;
+}
+
+/* ---------- Reset & Base ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: radial-gradient(ellipse at top, #4a5a7a 0%, var(--background) 60%);
+  color: var(--foreground);
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+h1, h2, h3, .font-display {
+  font-family: 'Orbitron', system-ui, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+/* ============================================================
+   GAME CONTAINER
+   ============================================================ */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  max-width: 800px;
+  width: 100%;
+}
+
+/* ---------- Header ---------- */
+.game-header {
+  text-align: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 153, 0, 0.4);
+  background: rgba(255, 153, 0, 0.1);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.badge-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.game-title {
+  margin-top: 12px;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.title-aws {
+  color: var(--primary);
+}
+
+.game-subtitle {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--muted-foreground);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- Stats ---------- */
+.stats-container {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-family: 'Orbitron', system-ui, sans-serif;
+}
+
+.stat-box {
+  padding: 16px;
+  border-radius: var(--radius);
+  background: var(--card);
+  border: 1px solid var(--border);
+  min-width: 100px;
+  text-align: center;
+}
+
+.stat-box.stat-accent {
+  border-color: rgba(255, 153, 0, 0.5);
+  background: rgba(255, 153, 0, 0.1);
+}
+
+.stat-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted-foreground);
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.stat-box.stat-accent .stat-value {
+  color: var(--primary);
+}
+
+/* ---------- Canvas ---------- */
+.canvas-wrapper {
+  position: relative;
+  border-radius: var(--radius);
+  padding: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-glow);
+}
+
+.game-canvas {
+  display: block;
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  touch-action: none;
+}
+
+/* ---------- Overlay ---------- */
+.overlay {
+  position: absolute;
+  inset: 12px;
+  border-radius: 8px;
+  background: rgba(42, 47, 74, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+  padding: 24px;
+  z-index: 10;
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.overlay-title {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  font-family: 'Orbitron', system-ui, sans-serif;
+}
+
+.overlay-text {
+  color: var(--muted-foreground);
+  max-width: 300px;
+  font-size: 14px;
+}
+
+.overlay-button {
+  padding: 12px 24px;
+  border-radius: 6px;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-family: 'Orbitron', system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  box-shadow: var(--shadow-glow);
+  transition: opacity 0.2s ease;
+}
+
+.overlay-button:hover {
+  opacity: 0.9;
+}
+
+/* ---------- Services Legend ---------- */
+.services-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  max-width: 600px;
+}
+
+.service-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+
+.service-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+/* ---------- Footer ---------- */
+.game-footer {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted-foreground);
+  font-family: 'Orbitron', system-ui, sans-serif;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 640px) {
+  .game-container {
+    gap: 16px;
+  }
+
+  .stats-container {
+    gap: 8px;
+  }
+
+  .stat-box {
+    min-width: 80px;
+    padding: 12px;
+  }
+
+  .stat-value {
+    font-size: 20px;
+  }
+
+  .overlay-text {
+    font-size: 13px;
+  }
+}

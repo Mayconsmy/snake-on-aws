@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWS Snake — Jogo da Cobrinha</title>
+  <meta name="description" content="Jogo da cobrinha temático AWS. Colete serviços da nuvem e cresça sua arquitetura serverless." />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="game-container">
+    
+    <!-- Header -->
+    <header class="game-header">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Powered by the Cloud
+      </div>
+      <h1 class="game-title">
+        <span class="title-aws">AWS</span> Snake
+      </h1>
+      <p class="game-subtitle">
+        Colete serviços da AWS e escale sua arquitetura serverless. Cuidado para não colidir com sua própria stack.
+      </p>
+    </header>
+
+    <!-- Stats -->
+    <div class="stats-container">
+      <div class="stat-box stat-accent">
+        <div class="stat-label">Score</div>
+        <div class="stat-value" id="score">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Best</div>
+        <div class="stat-value" id="best">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Length</div>
+        <div class="stat-value" id="length">3</div>
+      </div>
+    </div>
+
+    <!-- Canvas Container -->
+    <div class="canvas-wrapper">
+      <canvas id="gameCanvas" width="624" height="520" class="game-canvas"></canvas>
+      <div class="overlay" id="overlay">
+        <h2 class="overlay-title" id="overlayTitle">Ready to Deploy?</h2>
+        <p class="overlay-text" id="overlayText">Use as setas ou WASD para controlar. Espaço para pausar.</p>
+        <button class="overlay-button" id="startBtn">Launch</button>
+      </div>
+    </div>
+
+    <!-- Services Legend -->
+    <div class="services-legend">
+      <span class="service-item">
+        <span class="service-dot" style="background-color: #569A31;"></span>
+        S3
+      </span>
+      <span class="service-item">
+        <span class="service-dot" style="background-color: #FF9900;"></span>
+        Lambda
+      </span>
+      <span class="service-item">
+        <span class="service-dot" style="background-color: #FF9900;"></span>
+        EC2
+      </span>
+      <span class="service-item">
+        <span class="service-dot" style="background-color: #4053D6;"></span>
+        DynamoDB
+      </span>
+      <span class="service-item">
+        <span class="service-dot" style="background-color: #8C4FFF;"></span>
+        CloudFront
+      </span>
+      <span class="service-item">
+        <span class="service-dot" style="background-color: #FF4F8B;"></span>
+        SQS
+      </span>
+      <span class="service-item">
+        <span class="service-dot" style="background-color: #3B48CC;"></span>
+        RDS
+      </span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="game-footer">
+      ▲ ▼ ◀ ▶ &nbsp;·&nbsp; Space to pause
+    </footer>
+
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
